@@ -1,5 +1,3 @@
-let strip: neopixel.Strip = null
-let heading = 0
 maqueen.IR_callbackUser(function (message) {
     basic.showLeds(`
         # . # . #
@@ -8,7 +6,6 @@ maqueen.IR_callbackUser(function (message) {
         # . # . #
         # . # . #
         `)
-    strip = neopixel.create(DigitalPin.P1, 12, NeoPixelMode.RGB)
     basic.pause(500)
     for (let index = 0; index <= 4; index++) {
         if (message == 28) {
@@ -30,7 +27,12 @@ maqueen.IR_callbackUser(function (message) {
     basic.pause(500)
     strip.showColor(neopixel.colors(NeoPixelColors.Black))
 })
+let heading = 0
+let strip: neopixel.Strip = null
+strip = neopixel.create(DigitalPin.P1, 12, NeoPixelMode.RGB)
+music.playMelody("A G E D E D F G ", 120)
+strip.showBarGraph(32, 64)
 basic.forever(function () {
     heading = input.compassHeading()
-    heading = strip.range(0, 11)
+    basic.pause(1000)
 })
