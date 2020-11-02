@@ -1,4 +1,5 @@
 let strip: neopixel.Strip = null
+let heading = 0
 maqueen.IR_callbackUser(function (message) {
     basic.showLeds(`
         # . # . #
@@ -28,4 +29,8 @@ maqueen.IR_callbackUser(function (message) {
     }
     basic.pause(500)
     strip.showColor(neopixel.colors(NeoPixelColors.Black))
+})
+basic.forever(function () {
+    heading = input.compassHeading()
+    heading = strip.range(0, 11)
 })
